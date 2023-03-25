@@ -9,13 +9,14 @@ const errorResponse = (error: any, res: any) => {
   res.status(500).json({ message: "Internal Server Error" });
 };
 
+//create contact
 contactAirwrksRouter.post("/", async (req, res) => {
   const newContact: ContactAirWrks = req.body;
   try {
     const client = await getClient();
     const cursor = client
       .db()
-      .collection<ContactAirWrks>("contacts")
+      .collection<ContactAirWrks>("contactAirWrks")
       .insertOne(newContact);
     const results = await cursor;
     res.json(results);
@@ -23,7 +24,5 @@ contactAirwrksRouter.post("/", async (req, res) => {
     errorResponse(err, res);
   }
 });
-
-//create contact
 
 export default contactAirwrksRouter;
