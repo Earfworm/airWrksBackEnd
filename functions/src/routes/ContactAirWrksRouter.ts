@@ -13,6 +13,8 @@ const errorResponse = (error: any, res: any) => {
 contactAirwrksRouter.post("/", async (req, res) => {
   const newContact: ContactAirWrks = req.body;
   try {
+    console.log(newContact, "beating the dead horse");
+
     const client = await getClient();
     const cursor = client
       .db()
